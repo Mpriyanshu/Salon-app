@@ -10,4 +10,5 @@ public class HomeController {
     public String HomeControllerHandler(){
         return "user microservice for salon booking system";
     }
+
 }
