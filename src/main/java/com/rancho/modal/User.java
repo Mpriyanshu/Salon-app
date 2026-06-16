@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @Entity
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Id //Marks the primary key
+    @GeneratedValue(strategy = GenerationType.AUTO) //Auto-generates the ID
+    private Long id; //unique identifier
 
     private String fullName;
 
