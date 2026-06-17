@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -23,8 +24,16 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @PutMapping("/api/users/1")
-    public User updateUser(@RequestBody User user){
-        return userRepository.save(user);
+    @GetMapping("/api/users/{id}")
+    public User getUserById(Long id) throws Exception {
+        Optional<User> otp=userRepository.findById(id);
+        if(otp.isPresent()){
+            return otp.get();
+        }
+        throw new Exception("user not found");
     }
+   // @PutMapping("/api/users/1")
+   // public User updateUser(@RequestBody User user){
+    //    return userRepository.save(user);
+   // }
 }
