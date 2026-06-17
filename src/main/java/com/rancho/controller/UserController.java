@@ -24,8 +24,8 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/api/users/{id}")
-    public User getUserById(Long id) throws Exception {
+    @GetMapping("/api/users/{userId}")
+    public User getUserById(@PathVariable("userId") Long id) throws Exception {
         Optional<User> otp=userRepository.findById(id);
         if(otp.isPresent()){
             return otp.get();
