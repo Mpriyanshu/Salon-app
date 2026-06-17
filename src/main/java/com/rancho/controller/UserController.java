@@ -3,10 +3,7 @@ package com.rancho.controller;
 import com.rancho.modal.User;
 import com.rancho.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,10 @@ public class UserController {
     @GetMapping("/api/users")
     public List<User> getUsers(){
         return userRepository.findAll();
+    }
+
+    @PutMapping("/api/users/1")
+    public User updateUser(@RequestBody User user){
+        return userRepository.save(user);
     }
 }
