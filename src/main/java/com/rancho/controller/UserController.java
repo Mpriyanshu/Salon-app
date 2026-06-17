@@ -32,8 +32,20 @@ public class UserController {
         }
         throw new Exception("user not found");
     }
-   // @PutMapping("/api/users/1")
-   // public User updateUser(@RequestBody User user){
-    //    return userRepository.save(user);
-   // }
+
+    @PutMapping("/api/users/{id}")
+    public User updateUser(@RequestBody User user,
+                           @PathVariable Long id) throws Exception {
+        Optional<User> otp=userRepository.findById(id);
+        if(otp.isEmpty()){
+            throw new Exception("user not found with id"+id);
+        }
+        User existingUser=otp.get();
+
+        existingUser.setFullName(user.getFullName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setRole(user.getRole());
+
+        return userRepository.save(existingUser);
+    }
 }
