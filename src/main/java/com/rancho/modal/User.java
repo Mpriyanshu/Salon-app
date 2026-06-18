@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +18,8 @@ public class User {
 
     private String fullName;
 
+    @NotBlank(message = "email is mandatory")
+    @Email(message = "Email should be valid")
     private String email;
 
     private String phone;
@@ -25,6 +29,12 @@ public class User {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+
+    @NotBlank(message = "password is mandatory")
+    private String password;
+
+
 
     public User() {
 
@@ -41,6 +51,14 @@ public class User {
         this.role = role;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getId() {

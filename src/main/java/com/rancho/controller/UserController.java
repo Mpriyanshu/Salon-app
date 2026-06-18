@@ -2,6 +2,7 @@ package com.rancho.controller;
 
 import com.rancho.modal.User;
 import com.rancho.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class UserController {
     private UserRepository userRepository;
     // Crud operation
     @PostMapping("/api/users")
-    public User createUser(@RequestBody User user){
+    public User createUser(@RequestBody @Valid User user){
         return userRepository.save(user);
     }
 
