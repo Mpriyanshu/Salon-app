@@ -13,7 +13,7 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
+    // Crud operation
     @PostMapping("/api/users")
     public User createUser(@RequestBody User user){
         return userRepository.save(user);
@@ -47,5 +47,15 @@ public class UserController {
         existingUser.setRole(user.getRole());
 
         return userRepository.save(existingUser);
+    }
+
+    @DeleteMapping("api/users/{id}")
+    public String deleteUserById(@PathVariable Long id) throws Exception {
+        Optional<User> otp=userRepository.findById(id);
+        if(otp.isEmpty()) {
+            throw new Exception("user not found with id" + id);
+        }
+        userRepository.deleteById(otp.get().getId());
+        return "User deleted";
     }
 }
