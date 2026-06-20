@@ -18,12 +18,12 @@ public class UserController {
     // Crud operation
     @PostMapping("/api/users")
     public User createUser(@RequestBody @Valid User user){
-        return userRepository.save(user);
+
     }
 
     @GetMapping("/api/users")
     public List<User> getUsers(){
-        return userRepository.findAll();
+
     }
 
     @GetMapping("/api/users/{userId}")
